@@ -8,9 +8,9 @@ Right now the sandbox has a `localhost.pem` and a `localhost-chain.pem`. See `se
 
 See there references for how the CA, intermediate CA, and server certificate were set up. The `localhost-chain.pem` file is just a concatenation of the intermediate and server certificate (in a specific order, I believe).
 
-# https://medium.com/@brendankamp757/setting-up-local-tls-on-mac-using-cloudflares-cfssl-b905a7bcf3e0
-# https://medium.com/@brendankamp757/using-intermediate-certificates-on-localhost-for-mac-f4e310caa5bb
-# https://github.com/cloudflare/cfssl
+* https://medium.com/@brendankamp757/setting-up-local-tls-on-mac-using-cloudflares-cfssl-b905a7bcf3e0
+* https://medium.com/@brendankamp757/using-intermediate-certificates-on-localhost-for-mac-f4e310caa5bb
+* https://github.com/cloudflare/cfssl
 
 ## Application Setup
 
