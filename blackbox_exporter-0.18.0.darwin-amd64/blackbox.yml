@@ -1,0 +1,13 @@
+modules:
+  http_2xx:
+    prober: http
+    http:
+      # https://github.com/prometheus/blackbox_exporter/pull/541
+      preferred_ip_protocol: "ip4"
+      # Didn't need this because it is in the Mac Keychain? But if I remove
+      # it (and untrust it) from the Mac Keychain, it is necessary.
+      tls_config:
+        # This line would trust only the root CA initially
+        ca_file: 'sample_server/https/ca/ca.pem'
+        # This line would trust both the root CA and the intermediate CA initially
+        # ca_file: 'sample_server/https/chain.pem'

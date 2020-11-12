@@ -1,0 +1,43 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+  external_labels:
+    monitor: 'codelab-monitor'
+
+rule_files:
+  - rules.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets:
+        - localhost:9093
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 1s
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: 'node'
+    scrape_interval: 1s
+    static_configs:
+      - targets: ['localhost:8080', 'localhost:8081']
+        labels:
+          group: 'production'
+      - targets: ['localhost:8082']
+        labels:
+          group: 'canary'
+  - job_name: 'blackbox'
+    scrape_interval: 10s
+    metrics_path: /probe
+    params:
+      module: [http_2xx]  # Look for a HTTP 200 response.
+    static_configs:
+      - targets: ['https://localhost:8443']
+    relabel_configs: # That this is necessary is weird to me
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
