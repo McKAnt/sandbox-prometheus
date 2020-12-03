@@ -8,6 +8,6 @@ modules:
       # it (and untrust it) from the Mac Keychain, it is necessary.
       tls_config:
         # This line would trust only the root CA initially
-        ca_file: 'sample_server/https/ca/ca.pem'
+        ca_file: '../sample_server/https/ca/ca.pem'
         # This line would trust both the root CA and the intermediate CA initially
-        # ca_file: 'sample_server/https/chain.pem'
+        # ca_file: '../sample_server/https/chain.pem'
