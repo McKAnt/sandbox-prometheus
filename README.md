@@ -18,13 +18,15 @@ This repository uses Git LFS. Be sure to install Git LFS and activate it for thi
 
 ## Running
 
-Start some `node_exporter`s to simulate multiple nodes for the same job. This is just to expose some generic metrics to play around with.
+Start some `node_exporter`s to simulate multiple nodes for the same job. This is just to expose some generic metrics to play around with. Also start one that exports textfile metrics for threshold testing (see branch in other repository for scrape configuration).
 
 ```
 cd node_exporter-1.0.1.darwin-amd64
 ./node_exporter --web.listen-address 127.0.0.1:8080
 ./node_exporter --web.listen-address 127.0.0.1:8081
 ./node_exporter --web.listen-address 127.0.0.1:8082
+
+./node_exporter --web.listen-address 0.0.0.0:1337 --collector.textfile.directory=./textfile
 ```
 
 `sample_server` is a generic HTTPS server that will have its endpoint monitored. It uses a self-signed certificate chain but this is expected by the monitoring process.
